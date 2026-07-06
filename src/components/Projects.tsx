@@ -18,7 +18,6 @@ const Projects = () => {
     ScrollTrigger.refresh();
 
     const cards = sectionRef.current.querySelectorAll(".project-card");
-    
     gsap.fromTo(cards, 
       { opacity: 0, y: 60, scale: 0.95 },
       { 
@@ -35,7 +34,6 @@ const Projects = () => {
         }
       }
     );
-
     cards.forEach((card: any) => {
       const glow = card.querySelector(".project-card-glow");
 
