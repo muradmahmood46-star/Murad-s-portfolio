@@ -27,14 +27,12 @@ const Projects = () => {
         scale: 1, 
         duration: 1, 
         stagger: 0.15, 
-        ease: "expo.out" 
-      }, 
-      { 
+        ease: "expo.out",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 85%",
           toggleActions: "play none none none",
-        } 
+        }
       }
     );
 

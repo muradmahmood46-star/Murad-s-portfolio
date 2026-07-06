@@ -61,7 +61,9 @@ const Services = () => {
     tl.to(truck, { scaleX: 1, duration: 0 })
       .to(truck, { x: 1200, duration: 0.8, ease: "power1.in" });
 
-    return () => tl.kill();
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   return (

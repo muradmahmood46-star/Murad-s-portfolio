@@ -11,7 +11,6 @@ import TechStack from "./TechStack";
 import "./styles/AppLayout.css";
 
 const AppLayout = () => {
-  const [pageKey, setPageKey] = useState(window.location.href);
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll(".page-content > section"));
 

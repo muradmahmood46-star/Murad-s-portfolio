@@ -1,3 +1,20 @@
+export type TechBubbleSize = 'small' | 'medium' | 'large';
+
+export type TechStackItem = {
+  id: string;
+  name: string;
+  icon: string;
+  size: TechBubbleSize;
+};
+
+export type ServiceItem = {
+  id: string;
+  name: string;
+  icon: string;
+  tone: 'web' | 'ai' | 'business';
+  description: string;
+};
+
 export type PortfolioData = {
   hero: {
     name: string;
