@@ -1,0 +1,110 @@
+@keyframes neonPop {
+  0% {
+    color: #00FFFF;
+    text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
+    transform: scale(1);
+  }
+  50% {
+    color: #FFFFFF;
+    text-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF, 0 0 30px #00FFFF, 0 0 40px #00FFFF;
+    transform: scale(1.05);
+  }
+  100% {
+    color: #00FFFF;
+    text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
+    transform: scale(1);
+  }
+}
+
+/* Contact Section Styling */
+
+.contact-section {
+  padding: 100px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.contact-container {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  padding: 20px;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(167, 139, 250, 0.1);
+  border-radius: 24px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.contact-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(167, 139, 250, 0.3);
+  transform: translateY(-5px);
+}
+
+.contact-card h3 {
+  font-size: 1.2rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+/* High-contrast Neon Cyan for all contact and social links */
+.contact-card a,
+.contact-socials a {
+  font-size: 1.5rem;
+  color: #00FFFF;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+  animation: neonPop 2s infinite ease-in-out;
+}
+
+.contact-card a:hover,
+.contact-socials a:hover {
+  color: #FFFFFF;
+  text-shadow: 0 0 20px #00FFFF, 0 0 40px #00FFFF;
+  transform: scale(1.1);
+}
+
+.contact-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-footer {
+  margin-top: 60px;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Orange color and centered styling for footer text */
+.footer-text-combined {
+  font-size: 14px;
+  color: #ff8c00; /* Orange */
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+}

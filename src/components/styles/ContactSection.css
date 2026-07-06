@@ -1,0 +1,148 @@
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  border-radius: 24px;
+  padding: 28px 24px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 24px;
+  background: linear-gradient(45deg, #7c3aed, #a78bfa, #7c3aed);
+  background-size: 300% 300%;
+  animation: borderGlow 3s ease-in-out infinite;
+  z-index: -1;
+  padding: 2px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+@keyframes borderGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+}
+
+.contact-card h3 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #94a3b8;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.contact-card .contact-value {
+  color: #60a5fa;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.contact-card a.contact-link {
+  color: #60a5fa;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  animation: textPulse 2s ease-in-out infinite;
+}
+
+.contact-card a.contact-link:hover {
+  color: #93bbfc;
+}
+
+@keyframes textPulse {
+  0%, 100% { 
+    text-shadow: 0 0 0px rgba(96, 165, 250, 0);
+  }
+  50% { 
+    text-shadow: 0 0 15px rgba(96, 165, 250, 0.3);
+  }
+}
+
+.contact-card .contact-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-card .contact-socials a {
+  color: #60a5fa;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  animation: textPulse 2s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.contact-card .contact-socials a:hover {
+  color: #93bbfc;
+}
+
+.contact-footer {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(124, 58, 237, 0.1);
+  display: flex;
+  justify-content: center;
+}
+
+.footer-text-combined {
+  color: #ff8c00;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+  animation: orangePulse 2s ease-in-out infinite;
+}
+
+@keyframes orangePulse {
+  0%, 100% { 
+    text-shadow: 0 0 0px rgba(255, 140, 0, 0);
+  }
+  50% { 
+    text-shadow: 0 0 20px rgba(255, 140, 0, 0.3);
+  }
+}
+
+@media (max-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .contact-card {
+    padding: 20px 18px;
+  }
+  .contact-footer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-text-combined {
+    font-size: 0.85rem;
+  }
+}
