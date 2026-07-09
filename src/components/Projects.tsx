@@ -14,23 +14,23 @@ const Projects = () => {
   useGSAP(() => {
     if (!sectionRef.current) return;
 
-    // Force ScrollTrigger to calculate positions correctly on mount
     ScrollTrigger.refresh();
 
     const cards = sectionRef.current.querySelectorAll(".project-card");
-    gsap.fromTo(cards, 
+    gsap.fromTo(cards,
       { opacity: 0, y: 60, scale: 0.95 },
-      { 
-        opacity: 1, 
-        y: 0, 
-        scale: 1, 
-        duration: 1, 
-        stagger: 0.15, 
-        ease: "expo.out",
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 85%",
           toggleActions: "play none none none",
+          once: true,
         }
       }
     );

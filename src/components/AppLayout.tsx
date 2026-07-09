@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AboutSection from "./AboutSection";
 import CareerSection from "./CareerSection";
 import ContactSection from "./ContactSection";
@@ -11,6 +11,14 @@ import TechStack from "./TechStack";
 import "./styles/AppLayout.css";
 
 const AppLayout = () => {
+  // Always start at top on every page load/refresh
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      history.scrollRestoration = "manual";
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+  }, []);
+
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll(".page-content > section"));
 
@@ -27,12 +35,15 @@ const AppLayout = () => {
           }
         });
       },
-      { threshold: 0.16 }
+      { threshold: 0 }
     );
 
     sections.forEach((section) => {
-      // Don't add reveal-section to Projects to avoid GSAP conflict
-      if (!section.classList.contains("projects-section")) {
+      // Don't add reveal-section to Projects or TechStack to avoid conflicts
+      if (
+        !section.classList.contains("projects-section") &&
+        !section.classList.contains("techstack-section")
+      ) {
         section.classList.add("reveal-section");
         observer.observe(section);
       }

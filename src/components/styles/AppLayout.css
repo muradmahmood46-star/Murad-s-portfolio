@@ -21,8 +21,8 @@
 
 .reveal-section {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .reveal-section.is-visible {
@@ -60,6 +60,12 @@
 
 @media (max-width: 900px) {
   .page-content {
-    padding: 90px 0 40px;
+    padding: 80px 0 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-content {
+    padding: 70px 0 40px;
   }
 }

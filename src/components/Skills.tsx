@@ -30,97 +30,62 @@ const Skills = () => {
       gsap.set(".category-header", { opacity: 0, x: -30 });
       gsap.set(".progress-bar-fill", { width: "0%" });
 
+      // Header animation
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
-          toggleActions: "play none none reset",
+          start: "top 85%",
+          toggleActions: "play none none none",
+          once: true,
         },
       });
+      tl.from(titleRef.current, { y: -30, opacity: 0, duration: 0.7, ease: "power3.out" })
+        .from(underlineRef.current, { width: 0, duration: 0.6, ease: "power3.out" }, "-=0.4")
+        .from(".skills-subtitle", { y: 15, opacity: 0, duration: 0.5, ease: "power3.out" }, "-=0.3");
 
-      tl.from(titleRef.current, {
-        y: -60,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
-      })
-      .from(underlineRef.current, {
-        width: 0,
-        duration: 1,
-        ease: "power3.out",
-      }, "-=0.6")
-      .from(".skills-subtitle", {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-      }, "-=0.4");
+      // Each card animates when it enters viewport
+      const cards = gsap.utils.toArray<HTMLElement>(".skill-category-card", gridRef.current);
+      cards.forEach((card) => {
+        const header = card.querySelector(".category-header");
+        const skillItems = card.querySelectorAll(".skill-item");
+        const bars = card.querySelectorAll(".progress-bar-fill");
+        const percentageTexts = card.querySelectorAll(".percentage-text");
 
-      gsap.to(".skill-category-card", {
-        scrollTrigger: {
-          trigger: gridRef.current,
-          start: "top 85%",
-          toggleActions: "play none none reset",
-        },
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
-        onComplete: () => {
-          gsap.to(".category-header", {
-            opacity: 1,
-            x: 0,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: "power2.out",
-          });
+        const cardTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: card,
+            start: "top 88%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        });
 
-          const categories = gsap.utils.toArray<HTMLElement>(".skill-category-card");
+        cardTl
+          .to(card, { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" })
+          .to(header, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, "-=0.3")
+          .to(skillItems, { opacity: 1, x: 0, duration: 0.4, stagger: 0.06, ease: "power3.out" }, "-=0.2");
 
-          categories.forEach((category) => {
-            const skillItems = category.querySelectorAll(".skill-item");
-            const bars = category.querySelectorAll(".progress-bar-fill");
-            const percentageTexts = category.querySelectorAll(".percentage-text");
-
-            gsap.to(skillItems, {
-              opacity: 1,
-              x: 0,
-              duration: 0.6,
-              stagger: 0.08,
+        bars.forEach((bar, i) => {
+          const target = parseFloat((skillItems[i] as HTMLElement)?.getAttribute("data-percentage") || "0");
+          const textEl = percentageTexts[i] as HTMLElement;
+          cardTl.fromTo(
+            bar,
+            { width: "0%" },
+            {
+              width: `${target}%`,
+              duration: 1.2,
               ease: "power2.out",
-              onComplete: () => {
-                bars.forEach((bar, i) => {
-                  const target = parseFloat(skillItems[i]?.getAttribute("data-percentage") || "0");
-                  const textEl = percentageTexts[i] as HTMLElement;
-
-                  // Animate the progress bar
-                  gsap.to(bar, {
-                    width: `${target}%`,
-                    duration: 1.5,
-                    ease: "power2.inOut",
-                    delay: i * 0.08,
-                  });
-
-                  // Animate the percentage text with % symbol
-                  if (textEl) {
-                    const proxy = { val: 0 };
-                    gsap.to(proxy, {
-                      val: target,
-                      duration: 1.5,
-                      ease: "power2.inOut",
-                      delay: i * 0.08,
-                      onUpdate: () => {
-                        textEl.textContent = `${Math.round(proxy.val)}%`;
-                      },
-                    });
-                  }
-                });
-              }
-            });
-          });
-        }
+              delay: i * 0.05,
+              onUpdate() {
+                if (textEl) {
+                  const pct = parseFloat((bar as HTMLElement).style.width) || 0;
+                  textEl.textContent = `${Math.round(pct)}%`;
+                }
+              },
+            },
+            i === 0 ? "-=0.2" : "<0.05"
+          );
+        });
       });
     }, sectionRef);
 

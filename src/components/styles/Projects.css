@@ -35,7 +35,7 @@
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
   gap: 40px;
   width: 100%;
   max-width: 1200px;
@@ -160,6 +160,8 @@
   line-height: 1.6;
   color: #cbd5e1;
   margin: 0 0 24px 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .project-tech-stack {

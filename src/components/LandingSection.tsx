@@ -54,13 +54,13 @@ const LandingSection = () => {
     <section className="landing-section section-container is-visible" id="landing">
       <div className="landing-grid" ref={heroRef}>
         <div className="landing-copy" style={{ backdropFilter: 'none', filter: 'none' }}>
-          <h1 className="hero-name" style={{ color: '#ffffff', textShadow: 'none', backdropFilter: 'none', filter: 'none' }}>{portfolioData.hero.name}</h1>
+          <h1 className="hero-name" style={{ color: '#ffffff', textShadow: 'none', backdropFilter: 'none', filter: 'none', opacity: 0 }}>{portfolioData.hero.name}</h1>
           <div className="hero-title-stack" aria-label="Professional titles" style={{ backdropFilter: 'none', filter: 'none' }}>
             <div className="hero-title-line-1" style={{ backdropFilter: 'none', filter: 'none' }}>
               <span className="hero-title-ai" style={{ color: '#7c3aed', textShadow: 'none', filter: 'none', backdropFilter: 'none' }}>AI ENGINEER</span>
-              <span className="hero-title-ampersand" style={{ color: '#ffffff', textShadow: 'none', filter: 'none', backdropFilter: 'none' }}>&</span>
+              <span className="hero-title-ampersand" style={{ color: '#ffffff', textShadow: 'none', filter: 'none', backdropFilter: 'none' }}>&amp;</span>
+              <span className="hero-title-developer" style={{ color: '#ffffff', textShadow: 'none', filter: 'none', backdropFilter: 'none' }}>FULL STACK DEVELOPER</span>
             </div>
-            <span className="hero-title-developer" style={{ color: '#ffffff', textShadow: 'none', filter: 'none', backdropFilter: 'none' }}>FULL STACK DEVELOPER</span>
           </div>
           <p className="hero-subtitle" style={{ opacity: 0 }}>{portfolioData.hero.subtitle}</p>
           <div className="hero-buttons" style={{ opacity: 0 }}>

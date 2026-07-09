@@ -15,6 +15,35 @@ const CareerSection = () => {
   useGSAP(() => {
     if (!containerRef.current || !sectionRef.current || !progressRef.current) return;
 
+    const isMobile = window.innerWidth <= 1024;
+
+    // ── MOBILE + TABLET: one-shot slide-in per card ──
+    if (isMobile) {
+      const cards = Array.from(containerRef.current.querySelectorAll(".career-card"));
+      cards.forEach((card) => {
+        gsap.fromTo(
+          card,
+          { opacity: 0, x: -80 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.7,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 88%",
+              toggleActions: "play none none none",
+              once: true,
+            },
+          }
+        );
+      });
+      return;
+    }
+
+    // Disable GSAP horizontal scroll on tablet — now handled above
+    // Desktop only below
+
     const section = sectionRef.current;
     const container = containerRef.current;
     const progress = progressRef.current;
